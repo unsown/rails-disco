@@ -3,7 +3,10 @@ module ActiveEvent
     module Autoloader
       def self.load_from(dirs)
         Dir[*dirs].each do |file|
-          require file
+          # http://stackoverflow.com/questions/10304700/loading-activerecord-models-in-the-proper-order-outside-of-a-rails-app
+          basedir = File.expand_path('../', file)
+          name = "#{File.basename(file, '.rb')}"
+          autoload name.classify.to_sym, "#{basedir}/#{name}"
         end
       end
 

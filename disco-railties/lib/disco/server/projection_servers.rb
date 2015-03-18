@@ -6,6 +6,7 @@ require 'bundler/setup' if File.exist?(ENV['BUNDLE_GEMFILE'])
 require 'active_event'
 require 'active_projection'
 require 'active_record'
+require 'pry'
 
 WORKER_COUNT = [ENV['WORKER_COUNT'].to_i, 1].max
 WORKER_NUMBER = ENV['WORKER_NUMBER'].to_i

@@ -6,6 +6,7 @@ require 'bundler/setup' if File.exist?(ENV['BUNDLE_GEMFILE'])
 require 'active_event'
 require 'active_domain'
 require 'active_record'
+require 'pry'
 
 LOGGER = ActiveEvent::Support::MultiLogger.new 'Domain Server'
 

@@ -7,6 +7,7 @@ module ActiveEvent
           basedir = File.expand_path('../', file)
           name = "#{File.basename(file, '.rb')}"
           autoload name.classify.to_sym, "#{basedir}/#{name}"
+          # require file
         end
       end
 

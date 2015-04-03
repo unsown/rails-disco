@@ -54,7 +54,10 @@ namespace :disco do
     end
 
     def connect
-      ActiveRecord::Base.establish_connection ActiveRecord::Tasks::DatabaseTasks.env
+      #DEPRECATION WARNING: Passing a string to
+      #ActiveRecord::Base.establish_connection for a configuration lookup is
+      #deprecated, please pass a symbol instead.
+      ActiveRecord::Base.establish_connection ActiveRecord::Tasks::DatabaseTasks.env.to_sym
     end
 
     namespace :migrate do

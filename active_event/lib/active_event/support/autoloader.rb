@@ -3,7 +3,6 @@ module ActiveEvent
     module Autoloader
       def self.load_from(dirs)
         Dir[*dirs].each do |file|
-          name = "#{File.basename(file, '.rb')}"
           require file
         end
       end

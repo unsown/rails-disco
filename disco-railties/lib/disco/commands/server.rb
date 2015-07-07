@@ -8,7 +8,7 @@ count.times do |i|
   server_env = env.merge('WORKER_COUNT' => count.to_s, 'WORKER_NUMBER' => i.to_s)
   pids << Process.spawn(server_env, "ruby #{File.expand_path '../../server', __FILE__}/projection_servers.rb")
 end
-pids << Process.spawn(env, 'rails s')
+pids << Process.spawn(env, 'rails s -p 3002')
 trap(:INT) do
   pids.each do |pid|
     begin

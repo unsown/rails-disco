@@ -22,4 +22,9 @@ EOF
   s.files 		= ['README.md']
 
   s.add_dependency 'disco-railties', version
+
+  s.add_development_dependency 'pry'
+  s.add_development_dependency 'pry-byebug'
+  s.add_development_dependency 'pry-rescue'
+  s.add_development_dependency 'pry-stack_explorer'
 end

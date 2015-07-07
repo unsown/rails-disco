@@ -8,6 +8,11 @@ require 'active_projection'
 require 'active_record'
 require 'pry'
 
+# load initializers from the rails application
+APP_PATH = ROOT_DIR + "/config/application"
+require APP_PATH
+Rails.application.class.parent::Application.initialize!
+
 WORKER_COUNT = [ENV['WORKER_COUNT'].to_i, 1].max
 WORKER_NUMBER = ENV['WORKER_NUMBER'].to_i
 LOGGER = ActiveEvent::Support::MultiLogger.new "Projection Server#{WORKER_COUNT > 1 ? " Nr. #{WORKER_NUMBER}" : ''}"

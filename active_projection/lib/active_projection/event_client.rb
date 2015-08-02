@@ -108,6 +108,14 @@ module ActiveProjection
       replay_queue.unbind(resend_exchange)
       self.current = true
       flush_delay_queue
+      write_pid
+    end
+
+    def write_pid
+      File.open Rails.root.join('tmp/pids/', 'projection.pid'), "a" do |f|
+        f << "#{ ENV['PARENT_PID'] }\n"
+        f << "#{ Process.pid }\n"
+      end
     end
 
     def flush_delay_queue

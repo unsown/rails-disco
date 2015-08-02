@@ -4,7 +4,7 @@ puts '=> Ctrl-C to shutdown projections server'
 pids = []
 
 count.times do |i|
-  server_env = {'ROOT_DIR' => Dir.pwd, 'WORKER_COUNT' => count.to_s, 'WORKER_NUMBER' => i.to_s, 'DISCO_SYS' => 'projection'}
+  server_env = {'ROOT_DIR' => Dir.pwd, 'WORKER_COUNT' => count.to_s, 'WORKER_NUMBER' => i.to_s, 'DISCO_SYS' => 'projection', 'PARENT_PID' => Process.pid.to_s}
   pids << Process.spawn(server_env, "ruby #{File.expand_path '../../server', __FILE__}/projection_servers.rb")
 end
 

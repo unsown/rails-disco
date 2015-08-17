@@ -8,6 +8,9 @@ require 'active_domain'
 require 'active_record'
 require 'pry'
 
+# prepare environment
+require File.join(ROOT_DIR, 'domain/config/application.rb')
+
 LOGGER = ActiveEvent::Support::MultiLogger.new 'Domain Server'
 
 ActiveEvent::Autoload.app_path = ROOT_DIR

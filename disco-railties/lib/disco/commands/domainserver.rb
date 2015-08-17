@@ -1,7 +1,7 @@
 puts 'Starting Domain Command Server'
 puts '=> Ctrl-C to shutdown domain server'
 
-pid = Process.spawn({'ROOT_DIR' => Dir.pwd}, "ruby #{File.expand_path '../../server', __FILE__}/domain_server.rb")
+pid = Process.spawn({'ROOT_DIR' => Dir.pwd, 'PARENT_PID' => Process.pid.to_s}, "ruby #{File.expand_path '../../server', __FILE__}/domain_server.rb")
 
 trap(:INT) do
   begin

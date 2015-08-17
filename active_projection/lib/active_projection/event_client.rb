@@ -112,7 +112,7 @@ module ActiveProjection
     end
 
     def write_pid
-      File.open Rails.root.join('tmp/pids/', 'projection.pid'), "a" do |f|
+      File.open File.expand_path('tmp/pids/projection.pid', Server.base_path), "a" do |f|
         f << "#{ ENV['PARENT_PID'] }\n"
         f << "#{ Process.pid }\n"
       end

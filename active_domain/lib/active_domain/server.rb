@@ -16,6 +16,7 @@ module ActiveDomain
       ActiveEvent::EventServer.start options
       drb_uri = URI::Generic.build(options[:drb_server]).to_s
       DRb.start_service(drb_uri, domain, options.fetch(:drb_config, {}))
+      write_pid
       DRb.thread.join
     rescue Interrupt
       LOGGER.info 'Catching Interrupt'
@@ -76,6 +77,13 @@ module ActiveDomain
     def parse_options(_args)
       options = default_options
       options.merge! YAML.load_file(config_file)[env].deep_symbolize_keys! unless config_file.blank?
+    end
+
+    def write_pid
+      File.open File.expand_path('tmp/pids/domain.pid', base_path), "a" do |f|
+        f << "#{ ENV['PARENT_PID'] }\n"
+        f << "#{ Process.pid }\n"
+      end
     end
   end
 end
